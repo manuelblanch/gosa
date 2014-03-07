@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<filterdef>
+  <definition>
+    <category>users</category>
+    <initial>true</initial>
+    <default>default</default>
+    <scope>auto</scope>
+
+	<attribute>dn</attribute>
+	<attribute>objectClass</attribute>
+	<attribute>irisPersonalUniqueID</attribute>
+	<attribute>highSchoolUserId</attribute>
+	<attribute>employeeNumber</attribute>
+	<attribute>givenName</attribute>
+	<attribute>sn</attribute>
+	<attribute>sn1</attribute>
+	<attribute>sn2</attribute>
+	<attribute>uid</attribute>
+	<attribute>userPassword</attribute>
+	<attribute>highSchoolPersonalEmail</attribute>
+  </definition>
+
+  <search>
+    <tag>default</tag>
+    <label>Nom complet</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>cn</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+  <search>
+    <tag>externalID</tag>
+    <label>DNI/Passaport/NIE</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)(irisPersonalUniqueID=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>irisPersonalUniqueID</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+  
+  <search>
+    <tag>internalID</tag>
+    <label>Identificador Intern</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)(highSchoolUserId=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>highSchoolUserId</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+  <search>
+    <tag>employeeNumber</tag>
+    <label>Número d'usuari</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)(employeeNumber=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>employeeNumber</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+  
+  <search>
+    <tag>mail</tag>
+    <label>Correu electrònic centre</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)(email=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>email</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+  
+  <search>
+    <tag>highSchoolPersonalEmail</tag>
+    <label>Correu electrònic personal</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)(highSchoolPersonalEmail=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>email</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+
+  <search>
+    <tag>template</tag>
+    <label>Plantilles</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(|(cn=$)(sn=$)(uid=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>cn</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+  <search>
+    <tag>posix</tag>
+    <label>Usuaris Linux</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(objectClass=posixAccount)(|(cn=$)(sn=$)(uid=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>cn</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+  <search>
+    <tag>samba</tag>
+    <label>Usuaris Samba</label>
+    <query>
+      <backend>LDAP</backend>
+      <filter>(&amp;(objectClass=highSchoolUser)(objectClass=gosaAccount)(objectClass=sambaSamAccount)(|(cn=$)(sn=$)(uid=$)))</filter>
+    </query>
+    <autocomplete>
+      <attribute>cn</attribute>
+      <frequency>0.5</frequency>
+      <characters>3</characters>
+    </autocomplete>
+  </search>
+
+</filterdef>
